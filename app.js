@@ -51,13 +51,13 @@ rl.on('close', () => {
     //　Mapにfor-ofを使うと、キーと値で要素が２つある配列が前に与えられた変数に代入（分割代入）
 
     const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {
-        return pair2[1].change - pair1[1].change;
+        return pair1[1].change - pair2[1].change;
     });
     //Array.from(prefectureDataMap)の部分で連想配列を普通の配列に変換する処理
     //Array　の　sort　関数を読んで無名関数を渡す
     //sortに対して渡す関数は比較関数
-    const rankingStrings = rankingArray.map(([key, value]) => {
-        return key + ':' + value.popu10 + '=>' + value.popu15 + '変化率:' + value.change;
+    const rankingStrings = rankingArray.map(([key, value], i ) => {
+        return ( i + 1) + '位' + key + ':' + value.popu10 + '=>' + value.popu15 + '変化率:' + value.change;
     });
     console.log(rankingStrings);
 });
